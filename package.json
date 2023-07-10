@@ -7,6 +7,9 @@
     "socket.io": "^4.7.1",
     "zod": "^3.21.4"
   },
+  "scripts": {
+    "dev": "ts-node src/server.ts --watch"
+  },
   "devDependencies": {
     "@types/amqplib": "^0.10.1",
     "@types/mongoose": "^5.11.97",

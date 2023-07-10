@@ -3,7 +3,6 @@ import { z } from "zod";
 
 const envSchema = z.object({
   PORT: z.coerce.number().default(3000),
-  JWT_SECRET: z.string(),
   QUEUE_NAME: z.string(),
   AMQP_SERVER: z.string(),
   SOCKET_EVENT_NAME: z.string(),
