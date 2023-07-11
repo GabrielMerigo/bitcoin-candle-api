@@ -21,14 +21,11 @@ export default class CandleMessageChannel {
     this._io.on("connection", () =>
       console.log("Web socket connection created")
     );
-
-    this._createMessageChannel();
   }
 
   private async _createMessageChannel() {
     try {
       const connection = await connect(env.AMQP_SERVER);
-      console.log("->", connection);
       this._channel = await connection.createChannel();
       this._channel.assertQueue(env.QUEUE_NAME);
     } catch (err) {
@@ -37,7 +34,8 @@ export default class CandleMessageChannel {
     }
   }
 
-  consumeMessage() {
+  async consumeMessage() {
+    await this._createMessageChannel();
     if (this._channel) {
       this._channel.consume(env.QUEUE_NAME, async (msg) => {
         const candleObj = JSON.parse(msg!.content.toString());

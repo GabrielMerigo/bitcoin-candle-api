@@ -2,7 +2,6 @@ import { Document, Schema, model } from "mongoose";
 
 export interface Candle extends Document {
   currency: string;
-  finalDateTime: Date;
   open: number;
   close: number;
   high: number;
@@ -13,10 +12,6 @@ export interface Candle extends Document {
 const schema = new Schema<Candle>({
   currency: {
     type: String,
-    required: true,
-  },
-  finalDateTime: {
-    type: Date,
     required: true,
   },
   open: {
